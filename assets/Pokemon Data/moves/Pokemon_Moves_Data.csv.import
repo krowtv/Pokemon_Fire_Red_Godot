@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://bw4l7hilrq7i2"
+
+[deps]
+
+files=["res://assets/Pokemon Data/moves/Pokemon_Moves_Data.Name.translation", "res://assets/Pokemon Data/moves/Pokemon_Moves_Data.Accuracy.translation", "res://assets/Pokemon Data/moves/Pokemon_Moves_Data.Effect Chance.translation", "res://assets/Pokemon Data/moves/Pokemon_Moves_Data.PP.translation", "res://assets/Pokemon Data/moves/Pokemon_Moves_Data.Priority.translation", "res://assets/Pokemon Data/moves/Pokemon_Moves_Data.Power.translation", "res://assets/Pokemon Data/moves/Pokemon_Moves_Data.Type.translation", "res://assets/Pokemon Data/moves/Pokemon_Moves_Data.Damage Class.translation"]
+
+source_file="res://assets/Pokemon Data/moves/Pokemon_Moves_Data.csv"
+dest_files=["res://assets/Pokemon Data/moves/Pokemon_Moves_Data.Name.translation", "res://assets/Pokemon Data/moves/Pokemon_Moves_Data.Accuracy.translation", "res://assets/Pokemon Data/moves/Pokemon_Moves_Data.Effect Chance.translation", "res://assets/Pokemon Data/moves/Pokemon_Moves_Data.PP.translation", "res://assets/Pokemon Data/moves/Pokemon_Moves_Data.Priority.translation", "res://assets/Pokemon Data/moves/Pokemon_Moves_Data.Power.translation", "res://assets/Pokemon Data/moves/Pokemon_Moves_Data.Type.translation", "res://assets/Pokemon Data/moves/Pokemon_Moves_Data.Damage Class.translation"]
+
+[params]
+
+compress=true
+delimiter=0

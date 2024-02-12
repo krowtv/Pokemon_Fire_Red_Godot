@@ -1,0 +1,10 @@
+ID,Name,Accuracy,Effect Chance,PP,Priority,Power,Type,Damage Class
+1,pound,100,,35,0,40,normal,physical
+2,karate-chop,100,,25,0,50,fighting,physical
+3,double-slap,85,,10,0,15,normal,physical
+4,comet-punch,85,,15,0,18,normal,physical
+5,mega-punch,85,,20,0,80,normal,physical
+6,pay-day,100,,20,0,40,normal,physical
+7,fire-punch,100,10,15,0,75,fire,physical
+8,ice-punch,100,10,15,0,75,ice,physical
+9,thunder-punch,100,10,15,0,75,electric,physical

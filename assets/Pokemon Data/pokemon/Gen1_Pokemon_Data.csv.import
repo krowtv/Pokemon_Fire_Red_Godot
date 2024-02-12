@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://dc5avn7er36lv"
+
+[deps]
+
+files=["res://assets/Pokemon Data/pokemon/Gen1_Pokemon_Data.Name.translation", "res://assets/Pokemon Data/pokemon/Gen1_Pokemon_Data.Height.translation", "res://assets/Pokemon Data/pokemon/Gen1_Pokemon_Data.Weight.translation", "res://assets/Pokemon Data/pokemon/Gen1_Pokemon_Data.Types.translation", "res://assets/Pokemon Data/pokemon/Gen1_Pokemon_Data.Abilities.translation", "res://assets/Pokemon Data/pokemon/Gen1_Pokemon_Data.Stats.translation"]
+
+source_file="res://assets/Pokemon Data/pokemon/Gen1_Pokemon_Data.csv"
+dest_files=["res://assets/Pokemon Data/pokemon/Gen1_Pokemon_Data.Name.translation", "res://assets/Pokemon Data/pokemon/Gen1_Pokemon_Data.Height.translation", "res://assets/Pokemon Data/pokemon/Gen1_Pokemon_Data.Weight.translation", "res://assets/Pokemon Data/pokemon/Gen1_Pokemon_Data.Types.translation", "res://assets/Pokemon Data/pokemon/Gen1_Pokemon_Data.Abilities.translation", "res://assets/Pokemon Data/pokemon/Gen1_Pokemon_Data.Stats.translation"]
+
+[params]
+
+compress=true
+delimiter=0

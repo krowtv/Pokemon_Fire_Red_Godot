@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://dav8b34sq68kr"]
+
+[ext_resource type="Texture2D" uid="uid://cadgradfjecfr" path="res://assets/tilesets/Maps/ROUTE 1.png" id="1_rho45"]
+[ext_resource type="PackedScene" uid="uid://ctviighrn1v1i" path="res://scenes/Player/Player.tscn" id="5_v25nq"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5at6y"]
+texture = ExtResource("1_rho45")
+7:28/0 = 0
+7:28/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+7:28/0/physics_layer_0/angular_velocity = 0.0
+9:31/0 = 0
+9:31/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+9:31/0/physics_layer_0/angular_velocity = 0.0
+9:31/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_ue30l"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_5at6y")
+
+[node name="Pallet_Town" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_ue30l")
+format = 2
+layer_0/tile_data = PackedInt32Array(65538, 458752, 28, 131074, 458752, 28, 196610, 458752, 28, 262146, 458752, 28, 327682, 458752, 28, 393218, 458752, 28, 65539, 458752, 28, 131075, 458752, 28, 196611, 458752, 28, 262147, 458752, 28, 327683, 458752, 28, 393219, 458752, 28, 65540, 458752, 28, 131076, 458752, 28, 196612, 458752, 28, 262148, 458752, 28, 327684, 458752, 28, 393220, 458752, 28, 65541, 458752, 28, 131077, 458752, 28, 196613, 458752, 28, 262149, 458752, 28, 327685, 458752, 28, 393221, 458752, 28, 65542, 458752, 28, 131078, 458752, 28, 196614, 458752, 28, 262150, 458752, 28, 327686, 458752, 28, 393222, 458752, 28, 65543, 458752, 28, 131079, 458752, 28, 196615, 458752, 28, 262151, 458752, 28, 327687, 458752, 28, 393223, 458752, 28, 65544, 458752, 28, 131080, 458752, 28, 196616, 458752, 28, 262152, 589824, 31, 327688, 458752, 28, 393224, 458752, 28, 65545, 458752, 28, 131081, 458752, 28, 196617, 458752, 28, 262153, 458752, 28, 327689, 458752, 28, 393225, 458752, 28, 65546, 458752, 28, 131082, 458752, 28, 196618, 458752, 28, 262154, 458752, 28, 327690, 458752, 28, 393226, 458752, 28)
+
+[node name="Player" parent="." instance=ExtResource("5_v25nq")]
+z_as_relative = false
+position = Vector2(80, 80)
