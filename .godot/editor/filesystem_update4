@@ -1,0 +1,7 @@
+res://scenes/Player/Player.tscn
+res://scenes/Player/scripts/PlayerMove.gd
+res://scenes/Towns/pallet_town.tscn
+res://scripts/FiniteStateMachine.gd
+res://scenes/Player/scripts/PlayerTurn.gd
+res://scenes/Player/PlayerMain.gd
+res://scenes/Player/scripts/PlayerIdle.gd
