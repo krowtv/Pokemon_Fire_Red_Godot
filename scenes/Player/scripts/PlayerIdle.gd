@@ -2,22 +2,21 @@ extends State
 class_name PlayerIdle
 
 @export var animator : AnimationPlayer
-var last_move := []
+var has_turned : bool
+var last_dir_faced := Vector2.ZERO
 var player : CharacterBody2D
 
 func Enter():
 	player = get_tree().get_first_node_in_group("Player")
-	if last_move.size() <= 2:
-		last_move.push_front(player.direction_facing)
-		
+	last_dir_faced = player.direction_facing
 	face_direction(player.direction_facing)
 
 func Update(_delta : float):
 	if player.input_dir != Vector2.ZERO:
-		if player.direction_facing != last_move[0]:
+		if player.direction_facing != last_dir_faced:
 			Turn(player.direction_facing)
-			last_move = []
-		else:
+			last_dir_faced = player.direction_facing
+		elif player.direction_facing == last_dir_faced and has_turned:
 			state_transition.emit(self, "PlayerMove")
 
 func face_direction(move_dir : Vector2):
@@ -34,11 +33,12 @@ func face_direction(move_dir : Vector2):
 			animation_name = "front_idle"
 		Vector2.ZERO:
 			animation_name = "front_idle"
-	
+	player.direction_facing = move_dir
 	animator.play(animation_name)
 
 func Turn(move_dir : Vector2):
 	var animation_name := ""
+	has_turned = false
 	
 	match move_dir:
 		Vector2.LEFT:
@@ -49,12 +49,8 @@ func Turn(move_dir : Vector2):
 			animation_name = "back_left_walk"
 		Vector2.DOWN:
 			animation_name = "front_left_walk"
-	animator.speed_scale = 2.5
+	animator.speed_scale = 2.8
 	animator.play(animation_name)
 
-
-func _on_animation_player_animation_finished(_anim_name):
-	if player.input_dir != Vector2.ZERO:
-		state_transition.emit(self, "PlayerMove")
-	else:
-		state_transition.emit(self, "PlayerIdle")
+func _on_animation_player_animation_finished(anim_name):
+	has_turned = true

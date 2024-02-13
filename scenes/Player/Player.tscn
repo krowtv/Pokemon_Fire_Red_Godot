@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://ctviighrn1v1i"]
+[gd_scene load_steps=51 format=3 uid="uid://ctviighrn1v1i"]
 
 [ext_resource type="Texture2D" uid="uid://3x48r32m8hq4" path="res://assets/sprites/player_sprites/player_walk.png" id="1_uvej8"]
 [ext_resource type="Script" path="res://scenes/Player/PlayerMain.gd" id="1_vfe0h"]
@@ -6,9 +6,6 @@
 [ext_resource type="Script" path="res://scenes/Player/scripts/PlayerIdle.gd" id="4_6tekm"]
 [ext_resource type="Script" path="res://scenes/Player/scripts/PlayerMove.gd" id="4_wy2cy"]
 [ext_resource type="Texture2D" uid="uid://vc2updq1oyfg" path="res://assets/sprites/player_sprites/player_sprint_transparent.png" id="6_35gpt"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nv6cx"]
-size = Vector2(16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_voabb"]
 atlas = ExtResource("1_uvej8")
@@ -818,19 +815,15 @@ font_size = 31
 shadow_size = 5
 shadow_color = Color(0, 0, 0, 0.901961)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kbxt3"]
-size = Vector2(48, 48)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_stahu"]
+size = Vector2(16, 16)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("label", "animator") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("label", "animator", "raycast") groups=["Player"]]
 safe_margin = 0.001
 script = ExtResource("1_vfe0h")
 label = NodePath("Label")
 animator = NodePath("AnimationPlayer")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(8, -8)
-shape = SubResource("RectangleShape2D_nv6cx")
-one_way_collision_margin = 0.0
+raycast = NodePath("RayCast2D")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_sfvtf")
@@ -840,15 +833,14 @@ initial_state = NodePath("PlayerIdle")
 script = ExtResource("4_6tekm")
 animator = NodePath("../../AnimationPlayer")
 
-[node name="PlayerMove" type="Node" parent="StateMachine" node_paths=PackedStringArray("collider", "animator")]
+[node name="PlayerMove" type="Node" parent="StateMachine" node_paths=PackedStringArray("animator")]
 script = ExtResource("4_wy2cy")
-collider = NodePath("")
 animator = NodePath("../../AnimationPlayer")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_1qiui")
-animation = &"front_idle"
+animation = &"back_idle"
 speed_scale = 100.0
 centered = false
 flip_h = true
@@ -869,11 +861,15 @@ offset_right = -10.0
 offset_bottom = -4.0
 label_settings = SubResource("LabelSettings_5rf6q")
 
-[node name="WalkableTiles" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WalkableTiles"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(8, -8)
-shape = SubResource("RectangleShape2D_kbxt3")
+shape = SubResource("RectangleShape2D_stahu")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(8, -8)
+rotation = 3.14159
+scale = Vector2(2, 1)
+target_position = Vector2(0, 8)
+collide_with_areas = true
 
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/PlayerIdle" method="_on_animation_player_animation_finished"]
-[connection signal="body_entered" from="WalkableTiles" to="StateMachine/PlayerMove" method="_on_walkable_tiles_body_entered"]
