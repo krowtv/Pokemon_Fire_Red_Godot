@@ -27,6 +27,6 @@ func _process(_delta):
 		direction_facing = input_dir
 		if raycast.target_position != input_dir:
 			raycast.target_position = input_dir * -(TILE_SIZE - 6)
-	print(raycast.is_colliding())
+
 	label.text = fsm.get_curr_state_name()
 
