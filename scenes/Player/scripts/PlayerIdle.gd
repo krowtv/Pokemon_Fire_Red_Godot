@@ -17,7 +17,7 @@ func Update(_delta : float):
 			Turn(player.direction_facing)
 			last_dir_faced = player.direction_facing
 		elif player.direction_facing == last_dir_faced and has_turned:
-			state_transition.emit(self, "PlayerMove")
+			state_transition.emit(self, "PlayerWalk")
 
 func face_direction(move_dir : Vector2):
 	var animation_name := ""
