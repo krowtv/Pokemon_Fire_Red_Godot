@@ -7,17 +7,23 @@ const SPRINT_SPEED := int(120)
 
 @export var raycast : RayCast2D
 @export var movespeed := WALK_SPEED
+@export var grass_sprite : AnimatedSprite2D
 
 var input_dir : Vector2
 var direction_facing := Vector2.ZERO
 var target_position := Vector2()
 var is_moving : bool
+var has_collided : bool
 
 func _ready():
 	pass
 	
 func _process(_delta):
-	check_collision()
+	if raycast.is_colliding():
+		check_collision(raycast.get_collider())
+	else:
+		has_collided = false
+		
 	if input_dir.y == 0:
 		input_dir.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
 	if input_dir.x == 0:
@@ -30,15 +36,17 @@ func _process(_delta):
 func Move(_delta : float):
 	var direction = (target_position - position).normalized()
 	position += direction * movespeed * _delta
-	
 	if position.distance_to(target_position) < 1:
 		position = target_position
 		is_moving = false
-
+		
 func handle_input():
 	if input_dir != Vector2.ZERO:
 		target_position = position + input_dir * TILE_SIZE
 		is_moving = true
 
-func check_collision():
-	print(raycast.get_collider())
+func check_collision(collision):
+	if (collision is Area2D) and (collision.name == "GrassInteract"):
+		has_collided = false
+	else:
+		has_collided = true

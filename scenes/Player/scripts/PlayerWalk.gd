@@ -11,7 +11,7 @@ func Enter():
 	player.target_position = player.position
 
 func Update(delta : float):
-	if !player.is_moving and !player.raycast.is_colliding():
+	if !player.is_moving and !player.has_collided:
 		player.handle_input()
 		anim_move(player.direction_facing)
 	if player.is_moving:
