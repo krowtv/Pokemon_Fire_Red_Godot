@@ -2,12 +2,9 @@ extends State
 class_name PlayerWalk
 
 @export var animator : AnimationPlayer
-@export var sprite : AnimatedSprite2D
 var player : CharacterBody2D
 
 var stepped_left := bool(false)
-var animation_playing := bool(false)
-var curr_anim := ""
 
 func Enter():
 	player = get_tree().get_first_node_in_group("Player")
@@ -16,47 +13,33 @@ func Enter():
 func Update(delta : float):
 	if !player.is_moving and !player.raycast.is_colliding():
 		player.handle_input()
-		if !player.is_sprinting:
-			anim_walk(player.input_dir)
-		else:
-			anim_sprint(player.input_dir)
+		anim_move(player.direction_facing)
 	if player.is_moving:
 		player.Move(delta)
 	if player.position == player.target_position:
 		state_transition.emit(self, "PlayerIdle")
 
-func anim_walk(step_dir : Vector2):
+func anim_move(step_dir : Vector2):
 	var animation_name = ""
+	var is_sprinting = Input.is_action_pressed("sprint")
 	match step_dir:
 		Vector2.LEFT:
-			animation_name = "left_" + ("left" if not stepped_left else "right") + "_walk"
+			animation_name = "left_" + ("left" if not stepped_left else "right")
 		Vector2.RIGHT:
-			animation_name = "right_" + ("left" if not stepped_left else "right") + "_walk"
+			animation_name = "right_" + ("left" if not stepped_left else "right")
 		Vector2.UP:
-			animation_name = "back_" + ("left" if not stepped_left else "right") + "_walk"
+			animation_name = "back_" + ("left" if not stepped_left else "right")
 		Vector2.DOWN:
-			animation_name = "front_" + ("left" if not stepped_left else "right") + "_walk"
+			animation_name = "front_" + ("left" if not stepped_left else "right")
 	
-	animator.speed_scale = 1.2
-	player.movespeed = player.WALK_SPEED
+	if !is_sprinting:
+		animator.speed_scale = 1.2
+		player.movespeed = player.WALK_SPEED
+		animation_name += "_walk"
+	elif is_sprinting:
+		animator.speed_scale = 1.4
+		player.movespeed = player.SPRINT_SPEED
+		animation_name += "_sprint"
+	
 	animator.play(animation_name)
-	
 	stepped_left = !stepped_left
-
-func anim_sprint(step_dir : Vector2):
-	var animation_name = ""
-	match step_dir:
-		Vector2.LEFT:
-			animation_name = "left_sprint"
-		Vector2.RIGHT:
-			animation_name = "right_sprint"
-		Vector2.UP:
-			animation_name = "back_sprint"
-		Vector2.DOWN:
-			animation_name = "front_sprint"
-	
-	animator.speed_scale = 2
-	player.movespeed = player.SPRINT_SPEED
-	
-	animator.play(animation_name)
-

@@ -1,3 +1,4 @@
-res://scenes/Towns/pallet_town.tscn
-res://scenes/Player/PlayerMain.gd
+res://scenes/Zones/Zone 1.tscn
 res://scenes/Player/Player.tscn
+res://scenes/Zones/AnimatedMapAbove.gd
+res://scenes/Player/PlayerMain.gd

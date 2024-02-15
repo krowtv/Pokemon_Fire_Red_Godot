@@ -12,14 +12,12 @@ var input_dir : Vector2
 var direction_facing := Vector2.ZERO
 var target_position := Vector2()
 var is_moving : bool
-var is_sprinting : bool
 
 func _ready():
 	pass
 	
 func _process(_delta):
-	is_sprinting = Input.is_action_pressed("sprint")
-	
+	check_collision()
 	if input_dir.y == 0:
 		input_dir.x = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
 	if input_dir.x == 0:
@@ -41,3 +39,6 @@ func handle_input():
 	if input_dir != Vector2.ZERO:
 		target_position = position + input_dir * TILE_SIZE
 		is_moving = true
+
+func check_collision():
+	print(raycast.get_collider())
